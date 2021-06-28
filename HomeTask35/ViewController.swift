@@ -42,5 +42,30 @@ class ViewController: UIViewController {
         publishSubject.onNext(30)
 
 
+        // MARK: - BehaviorSubject
+        // MARK: -
+        print("-----------------------------------")
+        print("BehaviorSubject:")
+        let behaviorSubject = BehaviorSubject(value: 1)
+
+        // first event
+        behaviorSubject.onNext(10)
+
+        // first subscription
+        behaviorSubject.subscribe {
+            print("first subscription:", self.testValue + $0)
+        }
+        .disposed(by: disposeBag)
+
+        // second event
+        behaviorSubject.onNext(20)
+
+        // second subscription
+        behaviorSubject.subscribe {
+            print("second subscription:", self.testValue + $0)
+        }.disposed(by: disposeBag)
+
+        // third event
+        behaviorSubject.onNext(30)
 }
 
