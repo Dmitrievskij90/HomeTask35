@@ -10,6 +10,9 @@ import RxSwift
 
 class ViewController: UIViewController {
 
+    private var testValue = 0
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
