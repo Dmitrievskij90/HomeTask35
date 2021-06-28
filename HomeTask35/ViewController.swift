@@ -15,7 +15,31 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        //MARK: - PublishSubject
+        //MARK: -
+        print("PublishSubject:")
+        let publishSubject = PublishSubject<Int>()
+
+        //first event
+        publishSubject.onNext(10)
+
+        //first subscription
+        publishSubject.subscribe {
+            print("first subscription:", self.testValue + $0)
+        }
+        .disposed(by: disposeBag)
+
+        //second event
+        publishSubject.onNext(20)
+
+        //second subscription
+        publishSubject.subscribe {
+            print("second subscription:", self.testValue + $0)
+        }
+        .disposed(by: disposeBag)
+
+        //third event
+        publishSubject.onNext(30)
 
 
 }
