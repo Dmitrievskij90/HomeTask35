@@ -67,5 +67,33 @@ class ViewController: UIViewController {
 
         // third event
         behaviorSubject.onNext(30)
+
+        // MARK: - ReplaySubject
+        // MARK: -
+        print("-----------------------------------")
+        print("ReplaySubject:")
+        let replaySubject = ReplaySubject<Int>.create(bufferSize: 2)
+
+        // first event
+        replaySubject.onNext(10)
+
+        // first subscription
+        replaySubject.subscribe {
+            print("first subscription:", self.testValue + $0)
+        }
+        .disposed(by: disposeBag)
+
+        // second event
+        replaySubject.onNext(20)
+
+        // second subscription
+        replaySubject.subscribe {
+            print("second subscription:", self.testValue + $0)
+        }
+        .disposed(by: disposeBag)
+
+        // third event
+        replaySubject.onNext(30)
+    }
 }
 
